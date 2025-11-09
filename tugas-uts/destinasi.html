@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulau Lombok - Detail Destinasi</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f7f9;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(135deg, #2193b0, #6dd5ed);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: white !important;
+        }
+
+        .nav-link {
+            color: white !important;
+            margin: 0 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-2px);
+            color: #ffd700 !important;
+        }
+
+        /* Section Title */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #2c3e50;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        /* Header Destinasi */
+        .destination-header {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1600') center/cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            margin-bottom: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .destination-header h1 {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        /* Main Content Styling */
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: none;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon-feature {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            padding: 1rem 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+            height: 200px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        /* Map Styling */
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #ffd700;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="fas fa-map-marked-alt"></i> Wisata Lombok</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html#home">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#destinasi">Destinasi Lain</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#galeri">Galeri</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#kontak">Kontak</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="destination-header">
+        <div class="container">
+            <h1 class="animate__animated animate__fadeInDown">Pulau Lombok: Surga di Timur Bali</h1>
+            <p class="lead animate__animated animate__fadeInUp">Menawarkan keindahan pantai, gunung berapi, dan kekayaan budaya Sasak yang otentik.</p>
+        </div>
+    </section>
+
+    <section id="deskripsi" class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-8">
+                    <div class="card p-4">
+                        <h2 class="section-title text-start mb-4">Mengenal Pulau Lombok</h2>
+                        <p class="fs-5">Pulau Lombok, bagian dari gugusan Kepulauan Nusa Tenggara, terpisah oleh Selat Lombok dari Bali di barat dan Selat Alas dari Sumbawa di timur. Dikenal dengan sebutan **'Pulau Seribu Masjid'**, Lombok menawarkan perpaduan sempurna antara **keindahan alam** yang masih alami dan **kekayaan budaya** Suku Sasak yang unik.</p>
+                        <p>Bentuknya yang hampir bulat dengan "ekor" di barat daya menjadikannya rumah bagi beragam lanskap, mulai dari gunung berapi megah, hutan hujan tropis, hingga garis pantai berpasir putih yang menawan. Keindahan alamnya tidak kalah dengan pulau tetangga, menjadikannya destinasi wajib bagi pecinta alam dan petualang.</p>
+                        
+                        <h4 class="mt-4 text-primary"><i class="fas fa-info-circle me-2"></i>Informasi Umum</h4>
+                        <ul>
+                            <li>**Lokasi:** Nusa Tenggara Barat, Indonesia.</li>
+                            <li>**Suku Mayoritas:** Suku Sasak.</li>
+                            <li>**Pusat Pemerintahan:** Mataram.</li>
+                            <li>**Daya Tarik Utama:** Gunung Rinjani, Gili Trawangan, Pantai Kuta Mandalika.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card p-4 h-100 bg-light">
+                        <h4 class="text-primary mb-3"><i class="fas fa-clock me-2"></i>Waktu Terbaik Berkunjung</h4>
+                        <p>Musim kemarau (April hingga Oktober) adalah waktu terbaik untuk mengunjungi Lombok, terutama untuk mendaki Gunung Rinjani dan aktivitas pantai.</p>
+                        
+                        <h4 class="text-primary mt-4 mb-3"><i class="fas fa-route me-2"></i>Aksesibilitas</h4>
+                        <p>Dapat diakses melalui **Bandara Internasional Lombok (LOP)** atau dengan kapal cepat/feri dari Bali (Padang Bai ke Lembar/Bangsal).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="fitur" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Daya Tarik Utama</h2>
+            <div class="row text-center g-4">
+                <div class="col-md-4">
+                    <div class="card p-4 h-100">
+                        <i class="fas fa-mountain icon-feature"></i>
+                        <h5>Tantangan Gunung Rinjani</h5>
+                        <p>Gunung berapi tertinggi kedua di Indonesia, menawarkan pendakian epik dengan pemandangan Danau Segara Anak yang ikonik.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card p-4 h-100">
+                        <i class="fas fa-water icon-feature"></i>
+                        <h5>Keindahan Tiga Gili</h5>
+                        <p>Gili Trawangan, Meno, dan Air yang terkenal dengan suasana bebas kendaraan, terumbu karang yang menawan, dan kehidupan malam yang semarak.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card p-4 h-100">
+                        <i class="fas fa-landmark icon-feature"></i>
+                        <h5>Budaya Sasak Otentik</h5>
+                        <p>Kunjungi desa tradisional seperti Sade untuk melihat arsitektur rumah adat dan proses menenun kain tenun khas Lombok.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeri" class="py-5 bg-white">
+        <div class="container">
+            <h2 class="section-title">Galeri Foto Pulau Lombok</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="showGalleryModal('/img/pantai klui.img.jpg', 'Pantai Klui, Lombok')">
+                    <img src="/img/pantai klui.img.jpg" alt="Pantai Klui">
+                    <div class="gallery-overlay">Pantai Klui</div>
+                </div>
+                <div class="gallery-item" onclick="showGalleryModal('/img/sirkuit mandalika.jpg', 'Sirkuit Internasional Mandalika')">
+                    <img src="/img/sirkuit mandalika.jpg" alt="Sirkuit Mandalika">
+                    <div class="gallery-overlay">Sirkuit Mandalika</div>
+                </div>
+                <div class="gallery-item" onclick="showGalleryModal('/img/selong-viewpoint.jpg', 'Selong Belanak Viewpoint')">
+                    <img src="/img/selong-viewpoint.jpg" alt="Pantai Selong Belanak">
+                    <div class="gallery-overlay">Pantai Selong Belanak</div>
+                </div>
+                <div class="gallery-item" onclick="showGalleryModal('/img/sate bulayak.jpeg', 'Sate Bulayak Khas Lombok')">
+                    <img src="/img/sate bulayak.jpeg" alt="Sate Bulayak">
+                    <div class="gallery-overlay">Sate Bulayak</div>
+                </div>
+                <div class="gallery-item" onclick="showGalleryModal('/img/Plencing-Kangkung.jpg', 'Plecing Kangkung')">
+                    <img src="/img/Plencing-Kangkung.jpg" alt="Plecing Kangkung">
+                    <div class="gallery-overlay">Plecing Kangkung</div>
+                </div>
+                <div class="gallery-item" onclick="showGalleryModal('/img/Berburu_Cacing_Laut.jpg', 'Festival Bau Nyale')">
+                    <img src="/img/Berburu_Cacing_Laut.jpg" alt="Bau Nyale">
+                    <div class="gallery-overlay">Festival Bau Nyale</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="peta" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Lokasi Pulau Lombok</h2>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126488.24275150531!2d116.09633303683832!3d-8.62534591783709!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdb636034f77c3%3A0x6b7201c8091176b5!2sLombok!5e0!3m2!1sid!2sid!4v1701386616016!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="text-center">
+        <div class="container">
+            <div class="social-icons mb-3">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p>&copy; 2025 Wisata pulau lombok. All Rights Reserved.</p>
+            <p class="mb-0">pulau lombok Indonesia</p>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="galleryModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="galleryModalTitle"></h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="galleryModalImage" src="" alt="" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Show gallery modal
+        function showGalleryModal(imageSrc, title) {
+            document.getElementById('galleryModalImage').src = imageSrc;
+            document.getElementById('galleryModalTitle').textContent = title;
+            const modal = new bootstrap.Modal(document.getElementById('galleryModal'));
+            modal.show();
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

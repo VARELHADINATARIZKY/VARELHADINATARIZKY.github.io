@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Foto - Jelajahi Keindahan Lombok</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            line-height: 1.6;
+            padding-top: 56px; /* Space for fixed navbar */
+        }
+
+        /* Navbar Style (Matching the main page) */
+        .navbar {
+            background: linear-gradient(135deg, #2193b0, #6dd5ed);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand, .nav-link {
+            color: white !important;
+            font-weight: bold;
+        }
+        
+        .nav-link:hover {
+            color: #ffd700 !important;
+        }
+
+        /* Header / Breadcrumb */
+        .page-header {
+            background: var(--gradient);
+            color: white;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        /* Gallery Grid Style */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem 0;
+        }
+
+        .gallery-item-card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            height: 100%;
+        }
+
+        .gallery-item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .gallery-item-card img {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card-body h5 {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .card-text {
+            font-size: 0.95rem;
+            color: #555;
+            /* Clamp text to limit height (optional) */
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Footer Style (Matching the main page) */
+        footer {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #ffd700;
+            transform: translateY(-3px);
+        }
+
+        /* Modal for full image view */
+        .modal-content {
+            border-radius: 15px;
+        }
+
+        .modal-header {
+            background: var(--gradient);
+            color: white;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .modal-body img {
+            max-height: 80vh;
+            width: auto;
+        }
+
+        @media (max-width: 768px) {
+             .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="fas fa-map-marked-alt"></i> Wisata Daerah</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html#home">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#destinasi">Destinasi</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#galeri">Galeri</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#kontak">Kontak</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1 class="animate__animated animate__fadeInDown"><i class="fas fa-camera me-2"></i>Galeri Foto Keindahan Lombok</h1>
+            <p class="lead">Kumpulan momen terbaik dari keajaiban alam, kuliner, dan budaya</p>
+        </div>
+    </header>
+
+    <section id="galeri" class="py-5">
+        <div class="container">
+            <div class="gallery-grid">
+                <div class="card gallery-item-card" onclick="showGalleryModal('/img/pantai klui.img.jpg', 'Pantai Klui', 'pantai klui adalah sebuah pantai di Lombok, NTB, yang dikenal dengan keindahan alamnya seperti pasir putih, air jernih, dan pemandangan matahari terbenam yang spektakuler. Pantai ini merupakan destinasi yang cocok untuk bersantai, berenang, snorkeling, atau berkemah, menawarkan suasana yang lebih tenang dibandingkan pantai-pantai lain di Lombok. ')">
+                    <img src="/img/pantai klui.img.jpg" alt="Pantai Klui">
+                    <div class="card-body">
+                        <h5 class="card-title">Pantai Klui</h5>
+                        <p class="card-text">Dikenal dengan keindahan alamnya seperti pasir putih, air jernih, dan pemandangan matahari terbenam yang spektakuler.</p>
+                    </div>
+                </div>
+                
+                <div class="card gallery-item-card" onclick="showGalleryModal('/img/sirkuit mandalika.jpg', 'Sirkuit Mandalika', 'sirkuit balap yang terletak di Kawasan Ekonomi Khusus Mandalika (KEK Mandalika) di Kabupaten Lombok Tengah, Nusa Tenggara Barat, Indonesia. Sirkuit Internasional Mandalika secara resmi bernama Sirkuit Internasional Pertamina Mandalika, merupakan tempat yang menarik untuk dikunjungi saat ada event balap.')">
+                    <img src="/img/sirkuit mandalika.jpg" alt="Sirkuit Mandalika">
+                    <div class="card-body">
+                        <h5 class="card-title">Sirkuit Mandalika</h5>
+                        <p class="card-text">Sirkuit balap internasional di KEK Mandalika, Lombok Tengah. Tempat menarik untuk dikunjungi saat event balap.</p>
+                    </div>
+                </div>
+                
+                <div class="card gallery-item-card" onclick="showGalleryModal('/img/selong-viewpoint.jpg', 'Selong Belanak', 'Pantai Selong Belanak adalah destinasi wisata di Lombok Tengah yang terkenal dengan keindahan alamnya, seperti pasir putih halus, air laut jernih, dan pemandangan bukit yang mengelilingi pantai berbentuk bulan sabit. Pantai ini populer untuk berselancar.')">
+                    <img src="/img/selong-viewpoint.jpg" alt="Selong Belanak">
+                    <div class="card-body">
+                        <h5 class="card-title">Pantai Selong Belanak</h5>
+                        <p class="card-text">Terkenal dengan pasir putih halus, air jernih, dan pemandangan bukit. Populer untuk berselancar pemula.</p>
+                    </div>
+                </div>
+                
+                <div class="card gallery-item-card" onclick="showGalleryModal('/img/ayam-taliwang-1.jpg', 'Ayam Taliwang', 'Ayam Taliwang adalah makanan khas yang berasal dari Taliwang, Sumbawa Barat, Nusa Tenggara Barat. Dibuat dari ayam kampung muda yang dibakar kemudian dibumbui dengan sambal pedas. Makanan ini biasanya disajikan bersama plecing kangkung.')">
+                    <img src="/img/ayam-taliwang-1.jpg" alt="Ayam Taliwang">
+                    <div class="card-body">
+                        <h5 class="card-title">Ayam Taliwang</h5>
+                        <p class="card-text">Makanan khas Lombok dari ayam kampung muda yang dibakar dan dibumbui sambal pedas. Wajib dicoba!</p>
+                    </div>
+                </div>
+                
+                <div class="card gallery-item-card" onclick="showGalleryModal('/img/nasi balap puyung.jpeg', 'Nasi Balap Puyung', 'Nasi Balap Puyung adalah hidangan yang nikmat disantap pagi hari dengan isian komplit: nasi putih, ayam suwir, keripik kentang, kacang kedelai, dan tumis kacang panjang.')">
+                    <img src="/img/nasi balap puyung.jpeg" alt="Nasi Balap Puyung">
+                    <div class="card-body">
+                        <h5 class="card-title">Nasi Balap Puyung</h5>
+                        <p class="card-text">Hidangan khas dengan isian komplit: nasi putih, ayam suwir, keripik kentang, kacang kedelai, dan tumis kacang panjang.</p>
+                    </div>
+                </div>
+                
+                <div class="card gallery-item-card" onclick="showGalleryModal('/img/Plencing-Kangkung.jpg', 'Plecing Kangkung', 'Pelecing khas Lombok adalah masakan yang terbuat dari kangkung yang direbus dan disajikan dengan sambal tomat pedas yang khas, serta pelengkap seperti tauge, kacang goreng, dan perasan jeruk limau. Cita rasa segar dan pedas.')">
+                    <img src="/img/Plencing-Kangkung.jpg" alt="Plecing Kangkung">
+                    <div class="card-body">
+                        <h5 class="card-title">Plecing Kangkung</h5>
+                        <p class="card-text">Masakan kangkung rebus dengan sambal tomat pedas khas, tauge, kacang goreng, dan perasan jeruk limau. Segar dan pedas!</p>
+                    </div>
+                </div>
+                
+                <div class="card gallery-item-card" onclick="showGalleryModal('/img/sate bulayak.jpeg', 'Sate Bulayak', 'Sate bulayak adalah sate khas Lombok yang menggunakan daging sapi, ayam, atau jeroan yang dibakar, dan disajikan dengan lontong bernama bulayak yang dibungkus daun enau muda. Keunikan terletak pada bumbu sate yang kaya rempah dan santan.')">
+                    <img src="/img/sate bulayak.jpeg" alt="Sate Bulayak">
+                    <div class="card-body">
+                        <h5 class="card-title">Sate Bulayak</h5>
+                        <p class="card-text">Sate khas dengan bumbu kaya rempah dan santan, disajikan dengan lontong khusus yang dibungkus daun enau muda.</p>
+                    </div>
+                </div>
+                
+                <div class="card gallery-item-card" onclick="showGalleryModal('/img/Berburu_Cacing_Laut.jpg', 'Tradisi Bau Nyale', 'Bau Nyale adalah tradisi unik di Lombok yang melibatkan masyarakat menangkap cacing laut berwarna-warni yang muncul setahun sekali, berakar dari legenda Putri Mandalika.')">
+                    <img src="/img/Berburu_Cacing_Laut.jpg" alt="Tradisi Bau Nyale">
+                    <div class="card-body">
+                        <h5 class="card-title">Tradisi Bau Nyale</h5>
+                        <p class="card-text">Tradisi unik menangkap cacing laut berwarna-warni setahun sekali, berakar dari legenda Putri Mandalika.</p>
+                    </div>
+                </div>
+                
+                <div class="card gallery-item-card" onclick="showGalleryModal('/img/pexels-photo-32248045.jpeg', 'Peresean', 'Peresean adalah seni bela diri tradisional suku Sasak di Lombok, Nusa Tenggara Barat, berupa pertarungan dua pria menggunakan tongkat rotan dan perisai kulit kerbau. Dulunya ritual mendatangkan hujan.')">
+                    <img src="/img/pexels-photo-32248045.jpeg" alt="Peresean">
+                    <div class="card-body">
+                        <h5 class="card-title">Peresean</h5>
+                        <p class="card-text">Seni bela diri tradisional suku Sasak berupa pertarungan menggunakan tongkat rotan dan perisai kulit kerbau.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center">
+        <div class="container">
+            <div class="social-icons mb-3">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p>&copy; 2025 Wisata pulau lombok. All Rights Reserved.</p>
+            <p class="mb-0">pulau lombok Indonesia</p>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="galleryModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="galleryModalTitle"></h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="galleryModalImage" src="" alt="" class="img-fluid rounded">
+                    <p class="text-muted mt-3" id="galleryModalDescription"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Function to show the gallery modal
+        function showGalleryModal(imageSrc, title, description) {
+            document.getElementById('galleryModalImage').src = imageSrc;
+            document.getElementById('galleryModalTitle').textContent = title;
+            document.getElementById('galleryModalDescription').textContent = description;
+            const modal = new bootstrap.Modal(document.getElementById('galleryModal'));
+            modal.show();
+        }
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                // Check if the link is to a section on this page (e.g., #galeri)
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
